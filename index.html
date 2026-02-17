@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Servisne Procedure">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#0072c1">
+    <link rel="apple-touch-icon" href="icon-192.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
+    <title>Servisne Procedure - Pretraga Brandova</title>
+    <link rel="manifest" href="manifest.json">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0072c1 0%, #014fa2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+            padding: 30px 0;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .search-box {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-bottom: 30px;
+        }
+
+        .search-input-wrapper {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        #searchInput {
+            width: 100%;
+            padding: 15px 50px 15px 20px;
+            font-size: 1.1em;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+
+        #searchInput:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #667eea;
+            font-size: 1.3em;
+        }
+
+        .results {
+            display: none;
+        }
+
+        .results.show {
+            display: block;
+        }
+
+        .result-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .result-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .brand-name {
+            font-size: 1.8em;
+            color: #0B2D72;
+            margin-bottom: 20px;
+            font-weight: 600;
+            border-bottom: 3px solid #0B2D72;
+            padding-bottom: 10px;
+        }
+
+        .info-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .info-label {
+            font-weight: 600;
+            color: #555;
+            min-width: 140px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .info-value {
+            color: #333;
+            flex: 1;
+            display: flex;
+            align-items: center;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background 0.3s;
+            font-weight: 500;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+
+        .download-btn:hover {
+            background: #5568d3;
+        }
+
+        .web-link {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .web-link:hover {
+            text-decoration: underline;
+        }
+
+        .email-link {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .email-link:hover {
+            text-decoration: underline;
+        }
+
+        .no-results {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+            color: #666;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .no-results h3 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .icon {
+            margin-right: 5px;
+        }
+
+        footer {
+            text-align: center;
+            color: white;
+            padding: 30px 20px;
+            margin-top: 60px;
+            font-size: 0.9em;
+            opacity: 0.5;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            .info-row {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .info-label {
+                margin-bottom: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔧 Servisne Procedure</h1>
+            <p>Pretražite servisne informacije po brandu</p>
+        </header>
+
+        <div class="search-box">
+            <div class="search-input-wrapper">
+                <input 
+                    type="text" 
+                    id="searchInput" 
+                    placeholder="Upišite naziv branda (npr. Samsung, Bosch, LG...)"
+                    autocomplete="off"
+                >
+                <span class="search-icon">🔍</span>
+            </div>
+        </div>
+
+        <div id="results" class="results"></div>
+    </div>
+
+    <footer>
+        <p>Created by Tomislav Vlahović</p>
+    </footer>
+
+    <script>
+        // Baza podataka brandova
+        const brandDatabase = [
+            {
+                brand: "Gorenje/Hisense VKA",
+                service: "Adiumenta servis",
+                address: "Kopilica 22, 21000 Split",
+                kontakt: "adiumenta@gmail.com",
+                napomena: "Za odobrenja ispuniti reklamacijski zapisnik",
+                documents: [
+                    {
+                        name: "Reklamacijski zapisnik",
+                        url: "putanja/do/Gorenje_reklamacijski_zapisnik.xlsx"
+                    }
+                ],
+                website: null // Nema web stranicu
+            },
+            {
+                brand: "Philips MKA",
+                service: "Singuli servis",
+                address: "Antuna Gustava Matoša 171, 21210 Solin",
+                kontakt: "info@singuli.hr",
+                napomena: "Neki artikli se mijenjaju 1za1, ostalo se šalje u servis",
+                documents: [
+                    {
+                        name: "DirectExchange",
+                        url: "#"
+                    },
+                    {
+                        name: "Obrazac direktne zamjene",
+                        url: "#"
+                    }
+                ],
+                website: null // Nema web stranicu
+            },
+            {
+                brand: "Gorenje/Hisense MKA",
+                service: "Adiumenta servis",
+                address: "Kopilica 22, 21000 Split",
+                kontakt: "adiumenta@gmail.com",
+                napomena: "Neki artikli se mijenjaju 1za1, ostalo se šalje u servis",
+                documents: [
+                    {
+                        name: "DirectExchange",
+                        url: "#"
+                    },
+                    {
+                        name: "Reklamacijski zapisnik",
+                        url: "#"
+                    }
+                ],
+                website: null // Nema web stranicu
+            },
+            {
+                brand: "Bosch VKA - MKA",
+                service: "Andabaka servis",
+                address: "Kopilica 21, 21000 Split",
+                kontakt: "servis@andabaka.hr",
+                napomena: "Svi artikli se šalju u servis",
+                documents: [], // Nema dokumente
+                website: null // Nema web stranicu
+            },
+            {
+                brand: "Bosch (Robert Bosch)",
+                service: "Robert Bosch",
+                address: "Ulica kneza Branimira 22, 10040 Zagreb",
+                kontakt: "reklamacije.pt@hr.bosch.com",
+                napomena: "(klime, grijalice, bojleri, uređaji za tretman zraka i sl.)",
+                documents: [
+                    {
+                        name: "Reklamacijski zapisnik",
+                        url: "#"
+                    },
+                    {
+                        name: "Upute za prijavu",
+                        url: "#"
+                    }
+                ],
+                website: null // Nema web stranicu
+            },
+            {
+                brand: "Midea",
+                service: "Andabaka servis",
+                address: "Kopilica 21, 21000 Split",
+                kontakt: "servis@andabaka.hr",
+                napomena: "Svi artikli se šalju u servis",
+                documents: [], // Nema dokumente
+                website: null // Nema web stranicu
+            },
+            {
+                brand: "Electrolux",
+                service: "Andabaka servis",
+                address: "Kopilica 21, 21000 Split",
+                kontakt: "servis@andabaka.hr",
+                napomena: "Svi artikli se šalju u servis",
+                documents: [], // Nema dokumente
+                website: null // Nema web stranicu
+            },
+            {
+                brand: "Candy",
+                service: "Andabaka servis",
+                address: "Kopilica 21, 21000 Split",
+                kontakt: "servis@andabaka.hr",
+                napomena: "Svi artikli se šalju u servis",
+                documents: [], // Nema dokumente
+                website: null // Nema web stranicu
+            },
+            {
+                brand: "Liebherr",
+                service: "Andabaka servis",
+                address: "Kopilica 21, 21000 Split",
+                kontakt: "servis@andabaka.hr",
+                napomena: "Svi artikli se šalju u servis",
+                documents: [], // Nema dokumente
+                website: null // Nema web stranicu
+            },
+            {
+                brand: "Whirlpool",
+                service: "Andabaka servis",
+                address: "Kopilica 21, 21000 Split",
+                kontakt: "servis@andabaka.hr",
+                napomena: "Svi artikli se šalju u servis",
+                documents: [
+                    {
+                        name: "Obrazac za skriveno oštećenje",
+                        url: "files/Whirlpool_reklamacijski_zapisnik.xls"
+                    }
+                ],
+                website: null // Nema web stranicu
+            },
+            {
+                brand: "Remington",
+                service: "Singuli servis",
+                address: "Antuna Gustava Matoša 171, 21210 Solin",
+                kontakt: "info@singuli.hr",
+                napomena: "Svi artikli se šalju u servis",
+                documents: [], // Nema dokumente
+                website: null // Nema web stranicu
+            },
+            {
+                brand: "Rowenta",
+                service: "DA Fix servis",
+                address: "Podbrežje III. 39, 10000 Zagreb",
+                kontakt: "info@dafixservis.hr",
+                napomena: "Svi artikli se šalju u servis",
+                documents: [], // Nema dokumente
+                website: null // Nema web stranicu
+            },
+            {
+                brand: "Krups",
+                service: "DA Fix servis",
+                address: "Podbrežje III. 39, 10000 Zagreb",
+                kontakt: "info@dafixservis.hr",
+                napomena: "Svi artikli se šalju u servis",
+                documents: [], // Nema dokumente
+                website: null // Nema web stranicu
+            },
+            {
+                brand: "Nespresso",
+                service: "MR servis",
+                address: "Slavonska avenija 26/4, 10000 Zagreb",
+                kontakt: "info@mrservis.hr",
+                napomena: "Svi artikli se šalju u servis",
+                documents: [], // Nema dokumente
+                website: null // Nema web stranicu
+            },
+            {
+                brand: "Tefal",
+                service: "DA Fix servis",
+                address: "Podbrežje III. 39, 10000 Zagreb",
+                kontakt: "info@dafixservis.hr",
+                napomena: "Svi artikli se šalju u servis",
+                documents: [], // Nema dokumente
+                website: null // Nema web stranicu
+            },
+            {
+                brand: "Dyson",
+                service: "Tehno-Mag servis",
+                address: "Slavonska avenija 53, 10000 Zagreb",
+                kontakt: "servis@teno-mag.hr",
+                napomena: "Svi artikli se šalju u servis",
+                documents: [], // Nema dokumente
+                website: null // Nema web stranicu
+            },
+            {
+                brand: "OralB",
+                service: "Singuli servis",
+                address: "Antuna Gustava Matoša 171, 21210 Solin",
+                kontakt: "info@singuli.hr",
+                napomena: "Svi artikli se šalju u servis",
+                documents: [], // Nema dokumente
+                website: null // Nema web stranicu
+            },
+            {
+                brand: "Nutribullet",
+                service: "Singuli servis",
+                address: "Antuna Gustava Matoša 171, 21210 Solin",
+                kontakt: "info@singuli.hr",
+                napomena: "Svi artikli se šalju u servis",
+                documents: [], // Nema dokumente
+                website: null // Nema web stranicu
+            },
+            {
+                brand: "Vivax MKA",
+                service: "MR servis",
+                address: "Slavonska avenija 26/4, 10000 Zagreb",
+                kontakt: "info@mrservis.hr",
+                napomena: "Svi artikli se šalju u servis",
+                documents: [], // Nema dokumente
+                website: null // Nema web stranicu
+            },
+            {
+                brand: "Tesla MKA",
+                service: "Mobidom servis",
+                address: "Supilova ulica 7, 10000 Zagreb",
+                kontakt: "info@mobidom.hr",
+                napomena: "Svi artikli se šalju u servis",
+                documents: [], // Nema dokumente
+                website: null // Nema web stranicu
+            },
+            {
+                brand: "Panasonic MKA",
+                service: "MR servis",
+                address: "Slavonska avenija 26/4, 10000 Zagreb",
+                kontakt: "info@mrservis.hr",
+                napomena: "Svi artikli se šalju u servis",
+                documents: [], // Nema dokumente
+                website: null // Nema web stranicu
+            },
+            {
+                brand: "Kenwood MKA",
+                service: "Singuli servis",
+                address: "Antuna Gustava Matoša 171, 21210 Solin",
+                kontakt: "info@singuli.hr",
+                napomena: "Svi artikli se šalju u servis",
+                documents: [], // Nema dokumente
+                website: null // Nema web stranicu
+            },
+            {
+                brand: "Xiaomi",
+                service: "MMM Agramservis",
+                address: "Samoborska cesta 145, 10090 Zagreb",
+                kontakt: "info@agramservis.hr",
+                napomena: "Svi artikli se šalju u servis",
+                documents: [], // Nema dokumente
+                website: null // Nema web stranicu
+            },
+            {
+                brand: "Hurom",
+                service: "Enzita Life d.o.o.",
+                address: "Avenija Dubrovnik 15 (Paviljon 14a), 10020 Zagreb",
+                kontakt: "servis@enzita.hr",
+                napomena: "Svi artikli se šalju u servis",
+                documents: [], // Nema dokumente
+                website: null // Nema web stranicu
+            },
+            {
+                brand: "EDEL+ White",
+                service: "Albidus d.o.o.",
+                address: "Savska cesta 106, 10000 Zagreb",
+                kontakt: "info@albidus.hr",
+                napomena: "Svi artikli se šalju u servis",
+                documents: [], // Nema dokumente
+                website: null // Nema web stranicu
+            },
+            {
+                brand: "Samsung",
+                service: "Smart Smart servis",
+                address: "Mažuranićevo šetalište 40, 21000 Split",
+                kontakt: "info@smartservice.hr",
+                napomena: "Svi artikli se šalju u servis",
+                documents: [], // Nema dokumente
+                website: null // Nema web stranicu
+            },
+            {
+                brand: "Huawei",
+                service: "Insignium",
+                address: "Rudeška cesta 146, 10000 Zagreb",
+                kontakt: "vrbani@insignum.hr",
+                napomena: "Svi artikli se šalju u servis",
+                documents: [], // Nema dokumente
+                website: null // Nema web stranicu
+            },
+            {
+                brand: "Apple",
+                service: "MMM Agramservis",
+                address: "Samoborska cesta 145, 10090 Zagreb",
+                kontakt: "info@agramservis.hr",
+                napomena: "Svi artikli se šalju u servis",
+                documents: [], // Nema dokumente
+                website: null // Nema web stranicu
+            },
+            {
+                brand: "Honor",
+                service: "MMM Agramservis",
+                address: "Samoborska cesta 145, 10090 Zagreb",
+                kontakt: "info@agramservis.hr",
+                napomena: "Svi artikli se šalju u servis",
+                documents: [], // Nema dokumente
+                website: null // Nema web stranicu
+            },
+            {
+                brand: "Motorola",
+                service: "MMM Agramservis",
+                address: "Samoborska cesta 145, 10090 Zagreb",
+                kontakt: "info@agramservis.hr",
+                napomena: "Svi artikli se šalju u servis",
+                documents: [], // Nema dokumente
+                website: null // Nema web stranicu
+            },
+            {
+                brand: "MeanIT",
+                service: "Intelkom d.o.o.",
+                address: "Zagrebaška cesta 145a, 10000 Zagreb",
+                kontakt: "servis@intelkom.hr",
+                napomena: "Svi artikli se šalju u servis",
+                documents: [], // Nema dokumente
+                website: null // Nema web stranicu
+            },
+            {
+                brand: "Panasonic mobiteli - telefoni",
+                service: "SE-MARK d.o.o.",
+                address: "Bjelovarska 36a, 10000 Zagreb",
+                kontakt: "servis@se-mark.hr",
+                napomena: "Svi artikli se šalju u servis",
+                documents: [], // Nema dokumente
+                website: null // Nema web stranicu
+            },
+            {
+                brand: "Garmin",
+                service: "Garmin Hrvatska",
+                address: "Karlovačka cesta 4k, 10000 Zagreb",
+                kontakt: "garmin.hrvatska@garmin.com",
+                napomena: "Svi artikli se šalju u servis",
+                documents: [], // Nema dokumente
+                website: null // Nema web stranicu
+            },
+            {
+                brand: "HP laptopi",
+                service: "Zel-cos servis",
+                address: "Ulica Grada Chicaga 28, 10000 Zagreb",
+                kontakt: "servis@zel-cos.hr",
+                napomena: "Svi artikli se šalju u servis",
+                documents: [], // Nema dokumente
+                website: null // Nema web stranicu
+            },
+            {
+                brand: "Lenovo laptopi",
+                service: "Zel-cos servis",
+                address: "Ulica Grada Chicaga 28, 10000 Zagreb",
+                kontakt: "servis@zel-cos.hr",
+                napomena: "Svi artikli se šalju u servis",
+                documents: [], // Nema dokumente
+                website: null // Nema web stranicu
+            },
+            {
+                brand: "Acer laptopi",
+                service: "Zel-cos servis",
+                address: "Ulica Grada Chicaga 28, 10000 Zagreb",
+                kontakt: "servis@zel-cos.hr",
+                napomena: "Svi artikli se šalju u servis",
+                documents: [], // Nema dokumente
+                website: null // Nema web stranicu
+            },
+            {
+                brand: "Asus laptopi",
+                service: "Microline",
+                address: "Slavonska avenija 26/9, 10000 Zagreb",
+                kontakt: "servis@microline.hr",
+                napomena: "Nalog preko Asus RMA obrasca",
+                documents: [], // Nema dokumente
+                website: "https://eu-rma.asus.com/hr/info/warranty",
+            },
+            {
+                brand: "Logitech",
+                service: "BigBang, ASBISC-CR, Microline",
+                address: "Big Partner (Madžarska ulica 12, Ljubljana) ASBIS-CR (Rakitnica 3, 10000 Zagreb) Microline (Slavonska avenija 26/9, 10000 Zagreb)",
+                kontakt: "iztok.zakrajsek@bigbang.si; barbara.kozmelj@bigbang.si; servis@asbis.hr; servis@microline.hr",
+                napomena: "Provjeriti uvoznika pa prema tome slati u servis",
+                documents: [], // Nema dokumente
+                website: null // Nema web stranicu
+            },
+            {
+                brand: "Keychron",
+                service: "ITS Intrade",
+                address: "Unska 2a, 10000 Zagreb",
+                kontakt: "info@its-it.hr",
+                napomena: "Svi artikli se šalju u servis",
+                documents: [], // Nema dokumente
+                website: null // Nema web stranicu
+            },
+            {
+                brand: "DJI",
+                service: "ITS Intrade",
+                address: "Unska 2a, 10000 Zagreb",
+                kontakt: "info@its-it.hr",
+                napomena: "Svi artikli se šalju u servis",
+                documents: [], // Nema dokumente
+                website: null // Nema web stranicu
+            },
+            {
+                brand: "WhiteShark",
+                service: "Šmit electronic",
+                address: "Metanska 1, 44320 Kutina",
+                kontakt: "kutina@smit-electronic.hr",
+                napomena: "Svi artikli se šalju u servis",
+                documents: [], // Nema dokumente
+                website: null // Nema web stranicu
+            },
+            {
+                brand: "JBL",
+                service: "KBZ electronic",
+                address: "Trnjanska 117, 10000 Zagreb",
+                kontakt: "kbz@kbz-electronic.hr",
+                napomena: "Svi artikli se šalju u servis",
+                documents: [], // Nema dokumente
+                website: null // Nema web stranicu
+            },
+            {
+                brand: "Skullcandy",
+                service: "Omnilab",
+                address: "Oreškovićeva 6c/3, 10000 Zagreb",
+                kontakt: "omnilab.doo@gmail.com",
+                napomena: "Svi artikli se šalju u servis",
+                documents: [], // Nema dokumente
+                website: null // Nema web stranicu
+            },
+            {
+                brand: "Instax foto",
+                service: "BigBang",
+                address: "Gospodarska ulica 2 (Hala2), 10431 Sveta Nedelja",
+                kontakt: "povrati@bigbang.hr",
+                napomena: "Nakon provjere uređaj se mijenja 1za1",
+                documents: [
+                    {
+                        name: "Instax povrat obrazac",
+                        url: "#"
+                    }
+                ],
+                website: null // Nema web stranicu
+            },
+            {
+                brand: "Epson printer",
+                service: "Eurotrade d.o.o. servis",
+                address: "Gospodarska ulica 15, 10255 Donji Stupnik",
+                kontakt: "servis@eurotrade.hr",
+                napomena: "Svi artikli se šalju u servis",
+                documents: [], // Nema dokumente
+                website: null // Nema web stranicu
+            },
+            {
+                brand: "HP printer",
+                service: "MR servis",
+                address: "Slavonska avenija 26/4, 10000 Zagreb",
+                kontakt: "info@mrservis.hr",
+                napomena: "Svi artikli se šalju u servis",
+                documents: [], // Nema dokumente
+                website: null // Nema web stranicu
+            },
+            {
+                brand: "Canyon",
+                service: "ASBISC-CR",
+                address: "Rakitnica 3, 10000 Zagreb",
+                kontakt: "servis@asbis.hr",
+                napomena: "Svi artikli se šalju u servis",
+                documents: [], // Nema dokumente
+                website: null // Nema web stranicu
+            },
+            {
+                brand: "LG TV",
+                service: "Supra Mea",
+                address: "Maksimirska 129, 10000 Zagreb",
+                kontakt: "info@supra-mea.hr",
+                napomena: "Ako je fizičko oštećenje, ispuniti obrazac i poslati u SupraMea",
+                documents: [
+                    {
+                        name: "LG Broken report",
+                        url: "#"
+                    }
+                ],
+                website: null // Nema web stranicu
+            },
+            {
+                brand: "Philips TV",
+                service: "Servis Kiki",
+                address: "Draganjina 3, 21000 Split",
+                kontakt: "josko.bitanga@st.t-com.hr",
+                napomena: "Svi artikli se šalju u servis",
+                documents: [], // Nema dokumente
+                website: null // Nema web stranicu
+            },
+            {
+                brand: "Sony TV",
+                service: "Servis Kiki",
+                address: "Draganjina 3, 21000 Split",
+                kontakt: "josko.bitanga@st.t-com.hr",
+                napomena: "Svi artikli se šalju u servis",
+                documents: [], // Nema dokumente
+                website: null // Nema web stranicu
+            },
+            {
+                brand: "TCL TV",
+                service: "Servisni centar Hanžek",
+                address: "Alberta Albinija 10, 10000 Zagreb",
+                kontakt: "info@schanzek.hr",
+                napomena: "Svi artikli se šalju u servis",
+                documents: [], // Nema dokumente
+                website: null // Nema web stranicu
+            },
+            {
+                brand: "Tesla TV",
+                service: "Supra Mea",
+                address: "Maksimirska 129, 10000 Zagreb",
+                kontakt: "info@msupra-mea.hr",
+                napomena: "Svi artikli se šalju u servis",
+                documents: [], // Nema dokumente
+                website: null // Nema web stranicu
+            },
+            {
+                brand: "Xiaomi TV",
+                service: "Supra Mea",
+                address: "Maksimirska 129, 10000 Zagreb",
+                kontakt: "info@msupra-mea.hr",
+                napomena: "Svi artikli se šalju u servis",
+                documents: [], // Nema dokumente
+                website: null // Nema web stranicu
+            },
+            {
+                brand: "Panasonic TV",
+                service: "Mobidom servis",
+                address: "Supilova ulica 7, 10000 Zagreb",
+                kontakt: "info@mobidom.hr",
+                napomena: "Svi artikli se šalju u servis",
+                documents: [], // Nema dokumente
+                website: null // Nema web stranicu
+            },
+
+        ];
+
+        const searchInput = document.getElementById('searchInput');
+        const resultsDiv = document.getElementById('results');
+
+        // Funkcija za otkrivanje email adrese u tekstu
+        function formatContact(contact) {
+            const emailRegex = /([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)/gi;
+            
+            return contact.replace(emailRegex, function(email) {
+                return `<a href="mailto:${email}" class="email-link">${email}</a>`;
+            });
+        }
+
+        // Pretraga sa live rezultatima
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.trim().toLowerCase();
+            
+            if (searchTerm === '') {
+                resultsDiv.classList.remove('show');
+                resultsDiv.innerHTML = '';
+                return;
+            }
+
+            const matches = brandDatabase.filter(item => 
+                item.brand.toLowerCase().includes(searchTerm)
+            );
+
+            displayResults(matches);
+        });
+
+        function displayResults(matches) {
+            if (matches.length === 0) {
+                resultsDiv.innerHTML = `
+                    <div class="no-results">
+                        <h3>Nema rezultata</h3>
+                        <p>Nismo pronašli brand koji ste tražili. Pokušajte s drugim nazivom.</p>
+                    </div>
+                `;
+                resultsDiv.classList.add('show');
+                return;
+            }
+
+            let html = '';
+            matches.forEach(item => {
+                html += `
+                    <div class="result-card">
+                        <div class="brand-name">${item.brand}</div>
+                        
+                        <div class="info-row">
+                            <div class="info-label">
+                                <span class="icon">🏢</span> Servis:
+                            </div>
+                            <div class="info-value">${item.service}</div>
+                        </div>
+
+                        <div class="info-row">
+                            <div class="info-label">
+                                <span class="icon">📍</span> Adresa:
+                            </div>
+                            <div class="info-value">${item.address}</div>
+                        </div>
+
+                        <div class="info-row">
+                            <div class="info-label">
+                                <span class="icon">✉️</span> Kontakt:
+                            </div>
+                            <div class="info-value">${formatContact(item.kontakt)}</div>
+                        </div>
+
+                        <div class="info-row">
+                            <div class="info-label">
+                                <span class="icon">💬</span> Napomena:
+                            </div>
+                            <div class="info-value">${item.napomena}</div>
+                        </div>
+                `;
+
+                // Prikaz dokumenata (ako postoje)
+                if (item.documents && item.documents.length > 0) {
+                    html += `
+                        <div class="info-row">
+                            <div class="info-label">
+                                <span class="icon">📄</span> Dokumenti:
+                            </div>
+                            <div class="info-value">
+                    `;
+                    item.documents.forEach(doc => {
+                        html += `
+                            <a href="${doc.url}" class="download-btn" download>
+                                📥 ${doc.name}
+                            </a>
+                        `;
+                    });
+                    html += `
+                            </div>
+                        </div>
+                    `;
+                }
+
+                // Prikaz web linka (ako postoji)
+                if (item.website) {
+                    html += `
+                        <div class="info-row">
+                            <div class="info-label">
+                                <span class="icon">🔗</span> Link:
+                            </div>
+                            <div class="info-value">
+                                <a href="${item.website}" target="_blank" class="web-link">
+                                    ${item.website}
+                                </a>
+                            </div>
+                        </div>
+                    `;
+                }
+
+                html += `</div>`;
+            });
+
+            resultsDiv.innerHTML = html;
+            resultsDiv.classList.add('show');
+        }
+
+        // Focus na input pri učitavanju stranice
+        window.addEventListener('load', () => {
+            searchInput.focus();
+        });
+
+        // Service Worker registracija za offline podršku
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                    .then(reg => console.log('Service Worker registriran'))
+                    .catch(err => console.log('Service Worker greška:', err));
+            });
+        }
+
+        // Install prompt za mobilne uređaje
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            // Možete dodati gumb za instalaciju kasnije
+        });
+    </script>
+</body>
+</html>

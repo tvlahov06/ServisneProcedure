@@ -880,8 +880,12 @@
                             <div class="info-value">
                     `;
                     item.documents.forEach(doc => {
+                        // Ekstenzija filea
+                        const fileExt = doc.url.split('.').pop().toLowerCase();
+                        const fileName = doc.name.includes('.') ? doc.name : `${doc.name}.${fileExt}`;
+
                         html += `
-                            <a href="${doc.url}" class="download-btn" download>
+                            <a href="${doc.url}?raw=true" class="download-btn" download="${fileName}">
                                 📥 ${doc.name}
                             </a>
                         `;

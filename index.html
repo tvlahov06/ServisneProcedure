@@ -345,6 +345,25 @@
                 website: null // Nema web stranicu
             },
             {
+            brand: "Miele",
+            servisi: [
+            {
+                service: "Miele Servis Split",
+                address: "Poljička cesta 26, 21000 Split",
+                kontakt: "info@miele.hr",
+                napomena: "Svi uređaji idu u servis"
+            },
+            {
+                service: "Miele Servis Zagreb",
+                address: "Buzinski prilaz 32, 10000 Zagreb",
+                kontakt: "info@miele.hr",
+                napomena: "Svi uređaji idu u servis"
+            }
+            ],
+            documents: [], // Nema dokumente
+            website: null // Nema web stranicu
+            },          
+            {
                 brand: "Electrolux",
                 service: "Andabaka servis",
                 address: "Kopilica 21, 21000 Split",
@@ -900,87 +919,126 @@
 
             let html = '';
             matches.forEach(item => {
+            html += `
+                <div class="result-card">
+                    <div class="brand-name">${item.brand}</div>
+                    `;
+
+            // Provjera da li ima više servisa ili jedan
+            if (item.servisi && item.servisi.length > 0) {
+                // Više servisa
+                item.servisi.forEach((servis, index) => {
+                    if (index > 0) {
+                        html += `<hr style="margin: 20px 0; border: 1px solid #014fa2;">`;
+            }
+
                 html += `
-                    <div class="result-card">
-                        <div class="brand-name">${item.brand}</div>
-                        
-                        <div class="info-row">
-                            <div class="info-label">
-                                <span class="icon">🏢</span> Servis:
-                            </div>
-                            <div class="info-value">${item.service}</div>
-                        </div>
+                    <div class="info-row">
+                        <div class="info-label">
+                            <span class="icon">🏢</span> Servis ${index + 1}:
+                    </div>
+                    <div class="info-value">${servis.service}</div>
+                    </div>
 
-                        <div class="info-row">
-                            <div class="info-label">
-                                <span class="icon">📍</span> Adresa:
-                            </div>
-                            <div class="info-value">${item.address}</div>
-                        </div>
+                    <div class="info-row">
+                        <div class="info-label">
+                            <span class="icon">📍</span> Adresa:
+                    </div>
+                <div class="info-value">${servis.address}</div>
+            </div>
 
-                        <div class="info-row">
-                            <div class="info-label">
-                                <span class="icon">✉️</span> Kontakt:
-                            </div>
-                            <div class="info-value">${formatContact(item.kontakt)}</div>
-                        </div>
+            <div class="info-row">
+                <div class="info-label">
+                    <span class="icon">✉️</span> Kontakt:
+                </div>
+                <div class="info-value">${formatContact(servis.kontakt)}</div>
+            </div>
 
-                        <div class="info-row">
-                            <div class="info-label">
-                                <span class="icon">💬</span> Napomena:
-                            </div>
-                            <div class="info-value">${item.napomena}</div>
-                        </div>
+            <div class="info-row">
+                <div class="info-label">
+                    <span class="icon">💬</span> Napomena:
+                </div>
+                <div class="info-value">${servis.napomena}</div>
+            </div>
+        `;
+    });
+        } else {
+            // Jedan servis (stari format za kompatibilnost)
+            html += `
+            <div class="info-row">
+                <div class="info-label">
+                    <span class="icon">🏢</span> Servis:
+                </div>
+                <div class="info-value">${item.service}</div>
+            </div>
+
+            <div class="info-row">
+                <div class="info-label">
+                    <span class="icon">📍</span> Adresa:
+                </div>
+                <div class="info-value">${item.address}</div>
+            </div>
+
+            <div class="info-row">
+                <div class="info-label">
+                    <span class="icon">✉️</span> Kontakt:
+                </div>
+                <div class="info-value">${formatContact(item.kontakt)}</div>
+            </div>
+
+            <div class="info-row">
+                <div class="info-label">
+                    <span class="icon">💬</span> Napomena:
+                </div>
+                <div class="info-value">${item.napomena}</div>
+            </div>
+        `;
+    }
+
+        // Prikaz dokumenata (ako postoje)
+        if (item.documents && item.documents.length > 0) {
+            html += `
+                <div class="info-row">
+                    <div class="info-label">
+                        <span class="icon">📄</span> Dokumenti:
+                    </div>
+                    <div class="info-value">
+            `;
+            item.documents.forEach(doc => {
+                html += `
+                    <a href="${doc.url}" class="download-btn" download="${doc.name}">
+                        📥 ${doc.name}
+                    </a>
                 `;
-
-                // Prikaz dokumenata (ako postoje)
-                if (item.documents && item.documents.length > 0) {
-                    html += `
-                        <div class="info-row">
-                            <div class="info-label">
-                                <span class="icon">📄</span> Dokumenti:
-                            </div>
-                            <div class="info-value">
-                    `;
-                    item.documents.forEach(doc => {
-                        // Ekstenzija filea
-                        const fileExt = doc.url.split('.').pop().toLowerCase();
-                        const fileName = doc.name.includes('.') ? doc.name : `${doc.name}.${fileExt}`;
-
-                        html += `
-                            <a href="${doc.url}?raw=true" class="download-btn" download="${fileName}">
-                                📥 ${doc.name}
-                            </a>
-                        `;
-                    });
-                    html += `
-                            </div>
-                        </div>
-                    `;
-                }
-
-                // Prikaz web linka (ako postoji)
-                if (item.website) {
-                    html += `
-                        <div class="info-row">
-                            <div class="info-label">
-                                <span class="icon">🔗</span> Link:
-                            </div>
-                            <div class="info-value">
-                                <a href="${item.website}" target="_blank" class="web-link">
-                                    ${item.website}
-                                </a>
-                            </div>
-                        </div>
-                    `;
-                }
-
-                html += `</div>`;
             });
-
-            resultsDiv.innerHTML = html;
-            resultsDiv.classList.add('show');
+            html += `
+                    </div>
+                </div>
+            `;
         }
+
+        // Prikaz web linka (ako postoji)
+        if (item.website) {
+            html += `
+                <div class="info-row">
+                    <div class="info-label">
+                        <span class="icon">🔗</span> Link:
+                    </div>
+                    <div class="info-value">
+                        <a href="${item.website}" target="_blank" class="web-link">
+                            ${item.website}
+                        </a>
+                    </div>
+                </div>
+            `;
+        }
+
+        html += `</div>`;
+    });
+
+    resultsDiv.innerHTML = html;
+    resultsDiv.classList.add('show');
+}
 
         // Focus na input pri učitavanju stranice
         window.addEventListener('load', () => {

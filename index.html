@@ -1537,6 +1537,35 @@
             deferredPrompt = e;
             // Možete dodati gumb za instalaciju kasnije
         });
+
+        // Pull-to-refresh funkcionalnost
+        let startY = 0;
+        let pulling = false;
+
+        document.addEventListener('touchstart', function(e) {
+            if (window.scrollY === 0) {
+                startY = e.touches[0].pageY;
+                pulling = false;
+            }
+        });
+
+        document.addEventListener('touchmove', function(e) {
+            if (window.scrollY === 0 && !pulling) {
+                const currentY = e.touches[0].pageY;
+                const pullDistance = currentY - startY;
+                
+                if (pullDistance > 100) {
+                    pulling = true;
+                }
+            }
+        });
+
+        document.addEventListener('touchend', function() {
+            if (pulling) {
+                window.location.reload();
+            }
+            pulling = false;
+        });
     </script>
 
     <!-- EMAIL WIDGET START -->

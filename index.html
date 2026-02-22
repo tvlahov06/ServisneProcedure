@@ -16,6 +16,34 @@
     <title>Servisne Procedure - Pretraga Brandova</title>
     <link rel="manifest" href="manifest.json">
     <style>
+        /* ===== MOBILNA APP FIKSNA POZADINA ===== */
+        html {
+            background: linear-gradient(135deg, #0072c1 0%, #014fa2 100%);
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-size: cover;
+            min-height: 100%;
+            height: 100%;
+            overflow-x: hidden;
+        }
+
+        html, body {
+            overscroll-behavior-y: none; /* Onemogući bounce scroll */
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* Sprječava bijelu pozadinu pri povlačenju */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -100vh;
+            left: 0;
+            right: 0;
+            height: 100vh;
+            background: linear-gradient(135deg, #0072c1 0%, #014fa2 100%);
+            z-index: -1;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -24,7 +52,7 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #0072c1 0%, #014fa2 100%);
+            background: transparent;
             min-height: 100vh;
             padding: 20px;
         }
@@ -121,7 +149,9 @@
         }
 
         .info-row {
-            display: flex;
+            display: grid;
+            grid-template-columns: 140px 1fr;
+            gap: 10px;
             align-items: center;
             margin-bottom: 7px;
             padding: 7px;
@@ -141,8 +171,8 @@
         .info-value {
             color: #333;
             flex: 1;
-            display: flex;
-            align-items: center;
+            line-height: 1.1;
+            word-break: break-word;
         }
 
         .download-btn {
@@ -176,6 +206,9 @@
             color: #667eea;
             text-decoration: none;
             font-weight: 500;
+            display: inline-block;
+            word-break: break-all;
+            margin: 2px 0;
         }
 
         .email-link:hover {
@@ -1338,13 +1371,24 @@
         const searchInput = document.getElementById('searchInput');
         const resultsDiv = document.getElementById('results');
 
-        // Funkcija za otkrivanje email adrese u tekstu
+        // Format kontakt - razdvaja emailove i telefone
         function formatContact(contact) {
             const emailRegex = /([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)/gi;
             
-            return contact.replace(emailRegex, function(email) {
+            // Razdvoji kontakte za bolji prikaz
+            let formatted = contact
+                .replace(/\s+ili\s+/gi, '<br>ili ')
+                .replace(/\s*,\s*/g, '<br>')
+                .replace(/\s*;\s*/g, '<br>')
+                .replace(/\s+i\s+/gi, '<br>')
+                .replace(/\s+\/\s+/g, '<br>');
+            
+            // Email linkovi
+            formatted = formatted.replace(emailRegex, function(email) {
                 return `<a href="mailto:${email}" class="email-link">${email}</a>`;
             });
+            
+            return formatted;
         }
 
         // Pretraga sa live rezultatima
@@ -1378,49 +1422,51 @@
 
             let html = '';
             matches.forEach(item => {
-            html += `
-                <div class="result-card">
-                    <div class="brand-name">${item.brand}</div>
-                    `;
+                html += `
+                    <div class="result-card">
+                        <div class="brand-name">${item.brand}</div>
+                `;
 
-            // Provjera da li ima više servisa ili jedan
-            if (item.servisi && item.servisi.length > 0) {
-                // Više servisa
-                item.servisi.forEach((servis, index) => {
-                    if (index > 0) {
-                        html += `<hr style="margin: 20px 0; border: 1px solid #014fa2;">`;
-            }
-
+        // Provjera da li ima više servisa ili jedan
+        if (item.servisi && item.servisi.length > 0) {
+            // Više servisa
+            item.servisi.forEach((servis, index) => {
+                if (index > 0) {
+                    html += `<hr style="margin: 20px 0; border: 1px solid #014fa2;">`;
+                }
+                        
+                const servisLabel = item.servisi.length > 1 ? `Servis ${index + 1}` : 'Servis';
+                        
                 html += `
                     <div class="info-row">
                         <div class="info-label">
-                            <span class="icon">🏢</span> Servis ${index + 1}:
-                    </div>
-                    <div class="info-value">${servis.service}</div>
+                            <span class="icon">🏢</span> ${servisLabel}:
+                        </div>
+                        <div class="info-value">${servis.service}</div>
                     </div>
 
                     <div class="info-row">
                         <div class="info-label">
                             <span class="icon">📍</span> Adresa:
+                        </div>
+                        <div class="info-value">${servis.address}</div>
                     </div>
-                <div class="info-value">${servis.address}</div>
-            </div>
 
-            <div class="info-row">
-                <div class="info-label">
-                    <span class="icon">✉️</span> Kontakt:
-                </div>
-                <div class="info-value">${formatContact(servis.kontakt)}</div>
-            </div>
+                    <div class="info-row">
+                        <div class="info-label">
+                            <span class="icon">✉️</span> Kontakt:
+                        </div>
+                        <div class="info-value">${formatContact(servis.kontakt)}</div>
+                    </div>
 
-            <div class="info-row">
-                <div class="info-label">
-                    <span class="icon">💬</span> Napomena:
-                </div>
-                <div class="info-value">${servis.napomena}</div>
-            </div>
-        `;
-    });
+                    <div class="info-row">
+                        <div class="info-label">
+                            <span class="icon">💬</span> Napomena:
+                        </div>
+                        <div class="info-value">${servis.napomena}</div>
+                    </div>
+                `;
+            });
         } else {
             // Jedan servis (stari format za kompatibilnost)
             html += `
@@ -1512,6 +1558,27 @@
                     .catch(err => console.log('Service Worker greška:', err));
             });
         }
+        // Pull-to-refresh funkcionalnost
+        let startY = 0;
+        let pulling = false;
+
+        document.addEventListener('touchstart', function(e) {
+            if (window.scrollY === 0) {
+                startY = e.touches[0].pageY;
+                pulling = false;
+            }
+        });
+
+        document.addEventListener('touchmove', function(e) {
+            if (window.scrollY === 0 && !pulling) {
+                const currentY = e.touches[0].pageY;
+                const pullDistance = currentY - startY;
+                
+                if (pullDistance > 100) {
+                    pulling = true;
+                }
+            }
+        });
 
         // Install prompt za mobilne uređaje
         let deferredPrompt;

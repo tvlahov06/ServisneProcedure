@@ -1301,9 +1301,14 @@
     "brand": "HyperX",
     "service": "Also d.o.o.",
     "address": "Zelena aleja 53, 10410 Velika Gorica",
-    "kontakt": "info.ALSOCroatia@also.com",
-    "napomena": "Svi uređaji se šalju u servis",
-    "documents": [],
+    "kontakt": "hxchannelcareemea@hp.com",
+    "napomena": "Unutar 30 dana radi se DOA claim, šalje se u Also, starije od 30 dana povrat unutar garancije, excel tablicu popuniti s podatcima i presliku maloprodajnog računa i slati na mail",
+    "documents": [
+      {
+        "name": "HyperX Channel Claim",
+        "url": "document/HyperX_Channel_Claim.xlsx"
+      }
+    ],
     "website": null
   },
   {

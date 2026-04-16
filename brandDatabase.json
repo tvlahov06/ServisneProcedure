@@ -959,7 +959,7 @@
       {
         "service": "Big Partner",
         "address": "Madžarska ulica 12, 1000 Ljubljana, Slovenija",
-        "kontakt": "iztok.zakrajsek@bigbang.si; barbara.kozmelj@bigbang.si",
+        "kontakt": "iztok.zakrajsek@bigbang.si; jure.kolman@bigbang.si; barbara.kozmelj@bigbang.si",
         "napomena": "Svi uređaji se šalju u servis"
       },
       {
@@ -1093,11 +1093,11 @@
     "website": null
   },
   {
-    "brand": "Instax foto",
-    "service": "BigBang",
-    "address": "Gospodarska ulica 2 (Hala2), 10431 Sveta Nedelja",
-    "kontakt": "povrati@bigbang.hr",
-    "napomena": "Nakon provjere uređaj se mijenja 1za1",
+    "brand": "Instax Fujifilm foto",
+    "service": "Big Partner",
+    "address": "Madžarska ulica 12, 1000 Ljubljana, Slovenija",
+    "kontakt": "savo.sofric@bigpartner.si; barbara.kozmelj@bigbang.si; reklamacije@bigbang.hr",
+    "napomena": "Nakon provjere uređaj se mijenja 1za1 te uz najavu na mail adrese šalje u Sloveniju",
     "documents": [
       {
         "name": "Instax povrat obrazac",

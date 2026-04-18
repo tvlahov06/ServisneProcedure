@@ -1107,6 +1107,34 @@
     "website": null
   },
   {
+    "brand": "Ninja",
+    "service": "ITS Intrade",
+    "address": "Unska 2a, 10000 Zagreb",
+    "kontakt": "info@its-it.hr",
+    "napomena": "Svi artikli se šalju u servis",
+    "documents": [
+      {
+        "name": "Jamstveni list",
+        "url": "document/Shark Ninja Jamstveni List - ITS Servis.pdf"
+      }
+    ],
+    "website": null
+  },
+  {
+    "brand": "Shark",
+    "service": "ITS Intrade",
+    "address": "Unska 2a, 10000 Zagreb",
+    "kontakt": "info@its-it.hr",
+    "napomena": "Svi artikli se šalju u servis",
+    "documents": [
+      {
+        "name": "Jamstveni list",
+        "url": "document/Shark Ninja Jamstveni List - ITS Servis.pdf"
+      }
+    ],
+    "website": null
+  },
+  {
     "brand": "Polaroid",
     "service": "FTG distribucija d.o.o.",
     "address": "Kalinovica 8, 10000 Zagreb",

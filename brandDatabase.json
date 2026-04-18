@@ -846,8 +846,17 @@
   },
   {
     "brand": "MeanIT",
+    "service": "Bijelić Co d.o.o.",
+    "address": "Zagrebaška cesta 145a, 31000 Osijek",
+    "kontakt": "servis@bijelic-co.hr",
+    "napomena": "Svi artikli se šalju u servis",
+    "documents": [],
+    "website": null
+  },
+  {
+    "brand": "Botslab Kids",
     "service": "Intelkom d.o.o.",
-    "address": "Zagrebaška cesta 145a, 10000 Zagreb",
+    "address": "Jablanova ul. 41, 10000 Zagreb",
     "kontakt": "servis@intelkom.hr",
     "napomena": "Svi artikli se šalju u servis",
     "documents": [],

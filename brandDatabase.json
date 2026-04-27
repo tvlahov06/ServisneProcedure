@@ -1377,6 +1377,15 @@
     "website": null
   },
   {
+    "brand": "Denver",
+    "service": "Tehnocentar",
+    "address": "Prilaz Ivana Visina 7, 10000 Zagreb",
+    "kontakt": "servis@tehnocentar.hr",
+    "napomena": "Na mail se šalje opis kvara i račun, te servis osigurava prikup uređaja i slanje na servis",
+    "documents": [],
+    "website": null
+  },
+  {
     "brand": "ADATA",
     "service": "Microline",
     "address": "Slavonska avenija 26/9, 10000 Zagreb",

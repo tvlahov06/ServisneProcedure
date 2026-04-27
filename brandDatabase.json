@@ -475,16 +475,21 @@
         "service": "Singuli servis",
         "address": "Primorska 5, 10000 Zagreb",
         "kontakt": "info@singuli.hr",
-        "napomena": "Svi artikli se šalju u servis"
+        "napomena": "Većina artiklala se šalje u servis, neki artikli se mijenjaju 1za1"
       },
       {
         "service": "Singuli servis",
         "address": "Antuna Gustava Matoša 171, 21210 Solin",
         "kontakt": "info@singuli.hr",
-        "napomena": "Svi artikli se šalju u servis"
+        "napomena": "Većina artiklala se šalje u servis, neki artikli se mijenjaju 1za1"
       }
     ],
-    "documents": [],
+    "documents": [
+      {
+        "name": "Lista aparata za zamjenu u trgovinama",
+        "url": "document/Lista aparata za zamjenu u trgovinama.xlsx"
+      }
+    ],
     "website": null
   },
   {

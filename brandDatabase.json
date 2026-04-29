@@ -52,6 +52,10 @@
         "url": "document/Philips_direct_exchange.xlsx"
       },
       {
+        "name": "Versuni_DirectExchange",
+        "url": "document/Philips_direct_exchange_Versuni.xlsx"
+      },
+      {
         "name": "Obrazac direktne zamjene",
         "url": "document/Philips_obrazac_direktne_zamjene.xlsx"
       }

@@ -872,7 +872,7 @@
     "website": null
   },
   {
-    "brand": "Botslab Kids",
+    "brand": "Botslab Kids 360",
     "service": "Bijelić Co d.o.o.",
     "address": "Sv. L. B. Mandica 13a, 31000 Osijek",
     "kontakt": "servis@bijelic-co.hr",
@@ -1422,6 +1422,15 @@
   },
   {
     "brand": "Denver",
+    "service": "Tehnocentar",
+    "address": "Prilaz Ivana Visina 7, 10000 Zagreb",
+    "kontakt": "servis@tehnocentar.hr",
+    "napomena": "Na mail se šalje opis kvara i račun, te servis osigurava prikup uređaja i slanje na servis",
+    "documents": [],
+    "website": null
+  },
+  {
+    "brand": "Celly Smartwatch Kids",
     "service": "Tehnocentar",
     "address": "Prilaz Ivana Visina 7, 10000 Zagreb",
     "kontakt": "servis@tehnocentar.hr",

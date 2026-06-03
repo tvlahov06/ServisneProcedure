@@ -1533,5 +1533,14 @@
       }
     ],
     "website": null
+  },
+  {
+    "brand": "Hitachi TV",
+    "service": "TV-Mind d.o.o.",
+    "address": "Ante Topića Mimare 30, 10000 Zagreb",
+    "kontakt": "tvmindservis@gmail.com",
+    "napomena": "Ispuniti formu i poslati u servis",
+    "documents": [],
+    "website": "https://tv-mind.hr/#forma"
   }
 ]

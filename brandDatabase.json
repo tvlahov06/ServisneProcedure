@@ -837,11 +837,24 @@
   },
   {
     "brand": "Apple",
-    "service": "MMM Agramservis",
-    "address": "Samoborska cesta 145, 10090 Zagreb",
-    "kontakt": "info@agramservis.hr",
-    "napomena": "Svi artikli se šalju u servis",
-    "documents": [],
+    "servisi": [
+      {
+        "service": "MMM Agramservis",
+        "address": "Samoborska cesta 145, 10090 Zagreb",
+        "kontakt": "info@agramservis.hr",
+        "napomena": "Svi artikli se šalju u servis"
+      },
+      {
+        "service": "iStyle d.o.o.",
+        "address": "Vice Vukova 6 (Arena Centar), 10000 Zagreb",
+        "kontakt": "servis@istyle.hr",
+        "napomena": "Potrebno je artikl skupa sa ispunjenim reklamacijskim zapisnikom, originalnim računom, jamstvenim listom i u originalnoj ambalaži pripremiti te nam javiti na: omt-ured@logista.hr kako bi vam naručili prikup i poslali na servis"
+        "documents": [
+          {
+            "name": "Reklamacijski zapisnik",
+            "url": "document/Agram_reklamacijski_zapisnik.pdf"
+          }
+        ],
     "website": null
   },
   {

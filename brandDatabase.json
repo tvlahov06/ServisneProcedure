@@ -1348,6 +1348,20 @@
     "website": null
   },
   {
+    "brand": "HiFuture",
+    "service": "Logista",
+    "address": "Dražice Zamet 123b, 51000 Rijeka",
+    "kontakt": "info@logista.hr, omt-ured@logista.hr",
+    "napomena": "Potrebno je artikl skupa sa ispunjenim reklamacijskim zapisnikom, originalnim računom, jamstvenim listom i u originalnoj ambalaži pripremiti te nam javiti na: omt-ured@logista.hr kako bi vam naručili prikup. Artikl šaljemo na servis našem dobavljaču u Sloveniju. Nakon odrađenog servisa javljamo da li je artikl popravljiv ili je zamijenjen za novi te ga vraćamo krajnjem korisniku.",
+    "documents": [
+      {
+        "name": "Logista reklamacijski zapisnik",
+        "url": "document/Logista_reklamacijski_zapisnik.docx"
+      }
+    ],
+    "website": null
+  },
+  {
     "brand": "Dlink",
     "service": "MR servis",
     "address": "Slavonska avenija 26/4, 10000 Zagreb",

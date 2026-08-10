@@ -400,10 +400,20 @@
   },
   {
     "brand": "TCL TV",
-    "service": "Servisni centar Hanžek",
-    "address": "Alberta Albinija 10, 10000 Zagreb",
-    "kontakt": "info@schanzek.hr",
-    "napomena": "Svi uređaji se šalju u servis",
+    "servisi": [
+      {
+        "service": "Servisni centar Hanžek",
+        "address": "Alberta Albinija 10, 10000 Zagreb",
+        "kontakt": "info@schanzek.hr",
+        "napomena": "Svi uređaji se šalju u servis"
+      },
+      {
+        "service": "Servis Kiki",
+        "address": "Draganjina 3, 21000 Split",
+        "kontakt": "josko.bitanga@st.t-com.hr",
+        "napomena": "Svi uređaji se šalju u servis"
+      }
+    ],
     "documents": [],
     "website": null
   },

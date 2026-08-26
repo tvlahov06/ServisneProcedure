@@ -445,6 +445,15 @@
     "website": null
   },
   {
+    "brand": "Shark Ninja MKA",
+    "service": "Mobidom servis",
+    "address": "Supilova ulica 7, 10000 Zagreb",
+    "kontakt": "info@mobidom.hr",
+    "napomena": "Svi uređaji se šalju u servis",
+    "documents": [],
+    "website": null
+  },
+  {
     "brand": "Smeg",
     "servisi": [
       {
@@ -1181,7 +1190,7 @@
     "website": null
   },
   {
-    "brand": "Shark Ninja",
+    "brand": "SharkNinja",
     "service": "ITS Intertrade",
     "address": "Unska 2a, 10000 Zagreb",
     "kontakt": "info@its-it.hr",

@@ -389,14 +389,14 @@
         "napomena": "Svi uređaji se šalju u servis"
       },
       {
-        "service": "ATV Electronic",
-        "address": "Ulica Braće Stipčića 5A, 51000 Rijeka",
-        "kontakt": "info@atvelectronic.hr",
-        "napomena": "Nalog preko ATV Electronic obrasca"
+        "service": "Servisni Centar Hanžek",
+        "address": "Albinijeva 10, 10000 Zagreb",
+        "kontakt": "info@schanzek.hr",
+        "napomena": "Svi uređaji se šalju u servis"
       }
     ],
     "documents": [],
-    "website": "https://atvelectronic.hr/prijevoz"
+    "website": null
   },
   {
     "brand": "TCL TV",
@@ -1132,10 +1132,20 @@
   },
   {
     "brand": "Sony audio",
-    "service": "ATV Electronic",
-    "address": "Ulica Braće Stipčića 5A, 51000 Rijeka",
-    "kontakt": "info@atvelectronic.hr",
-    "napomena": "Nalog preko ATV Electronic obrasca",
+    "servisi": [
+      {
+        "service": "Servisni Centar Hanžek",
+        "address": "Albinijeva 10, 10000 Zagreb",
+        "kontakt": "info@schanzek.hr",
+        "napomena": "Svi uređaji se šalju u servis"
+      },
+      {
+        "service": "ATV Electronic",
+        "address": "Ulica Braće Stipčića 5A, 51000 Rijeka",
+        "kontakt": "info@atvelectronic.hr",
+        "napomena": "Low Cost uređaji - Nalog preko ATV Electronic obrasca"
+      }
+    ],
     "documents": [],
     "website": "https://atvelectronic.hr/prijevoz"
   },

@@ -1633,6 +1633,32 @@
     "website": null
   },
   {
+    "brand": "Sencor",
+    "servisi": [
+      {
+        "service": "Silnica d.o.o.",
+        "address": "Slavenskog 1 (Shoping centar Prečko - 1.kat), 10000 Zagreb",
+        "kontakt": "info@silnica.hr","omt-ured@logista.hr",
+        "napomena": "Ispunitu reklamacijski zapisnik i poslati mail za prikup i slanje u servis."
+      }
+    ],
+    "documents": [
+      {
+        "name": "Reklamacijski zapisnik",
+        "url": "document/FAST:CR_reklmcijski_zapisnik.pdf"
+      },
+      {
+        "name": "Lista uređaja - servisni šifrarnik",
+        "url": "document/FAST_CR_servisni_sifrarnik_04.2026.xlsx"
+      },
+      {
+        "name": "Upute",
+        "url": "document/FAST_CR_servisna_procedura.pdf"
+      }
+    ],
+    "website": null
+  },
+  {
     "brand": "Hitachi TV",
     "service": "TV-Mind d.o.o.",
     "address": "Ante Topića Mimare 30, 10000 Zagreb",

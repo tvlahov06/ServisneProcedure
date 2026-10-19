@@ -739,6 +739,25 @@
     "website": null
   },
   {
+    "brand": "Vivax TV",
+    "servisi": [
+      {
+        "service": "MR Servis",
+        "address": "Slavonska avenija 26/4, 10000 Zagreb",
+        "kontakt": "info@mrservis.hr",
+        "napomena": "Svi uređaji se šalju u servis"
+      },
+      {
+        "service": "Servis Kiki",
+        "address": "Draganjina 3, 21000 Split",
+        "kontakt": "josko.bitanga@st.t-com.hr",
+        "napomena": "Svi uređaji se šalju u servis"
+      }
+    ],
+    "documents": [],
+    "website": null
+  },
+  {
     "brand": "Xiaomi mobile",
     "service": "MMM Agramservis",
     "address": "Samoborska cesta 145, 10090 Zagreb",

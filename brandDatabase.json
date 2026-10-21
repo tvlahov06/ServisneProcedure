@@ -581,7 +581,7 @@
       },
       {
         "service": "Elekom servis",
-        "address": "AKlanječka Ulica 52, 10000 Zagreb",
+        "address": "Klanječka Ulica 52, 10000 Zagreb",
         "kontakt": "info@elekom-servis.hr",
         "napomena": "Svi artikli se šalju u servis"
       }
@@ -594,6 +594,15 @@
     "service": "Tehno-Mag servis",
     "address": "Slavonska avenija 53, 10000 Zagreb",
     "kontakt": "servis@tehno-mag.hr",
+    "napomena": "Svi artikli se šalju u servis",
+    "documents": [],
+    "website": null
+  },
+  {
+    "brand": "Loreal",
+    "service": "Elekom servis",
+    "address": "Klanječka Ulica 52, 10000 Zagreb",
+    "kontakt": "info@elekom-servis.hr",
     "napomena": "Svi artikli se šalju u servis",
     "documents": [],
     "website": null

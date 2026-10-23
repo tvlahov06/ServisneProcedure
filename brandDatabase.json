@@ -545,12 +545,22 @@
   },
   {
     "brand": "Krups",
-    "service": "DA Fix servis",
-    "address": "Podbrežje III. 39, 10000 Zagreb",
-    "kontakt": "info@dafixservis.hr",
-    "napomena": "Svi artikli se šalju u servis",
+    "servisi": [
+      {
+        "service": "DA Fix servis",
+        "address": "Podbrežje III. 39, 10000 Zagreb",
+        "kontakt": "info@dafixservis.hr",
+        "napomena": "Svi artikli se šalju u servis"
+      },
+      {
+        "service": "Elekom servis",
+        "address": "Klanječka Ulica 52, 10000 Zagreb",
+        "kontakt": "info@elekom-servis.hr",
+        "napomena": "Napraviti nalog preko online prijave kvara"
+      }
+    ],
     "documents": [],
-    "website": null
+    "website": "https://crm.elekom-servis.hr/prijava-kvara.html"
   },
   {
     "brand": "Ecovacs",

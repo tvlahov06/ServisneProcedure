@@ -583,11 +583,11 @@
         "service": "Elekom servis",
         "address": "Klanječka Ulica 52, 10000 Zagreb",
         "kontakt": "info@elekom-servis.hr",
-        "napomena": "Svi artikli se šalju u servis"
+        "napomena": "Napraviti nalog preko online prijave kvara"
       }
     ],
     "documents": [],
-    "website": null
+    "website": "https://crm.elekom-servis.hr/prijava-kvara.html"
   },
   {
     "brand": "Dyson",
@@ -603,9 +603,9 @@
     "service": "Elekom servis",
     "address": "Klanječka Ulica 52, 10000 Zagreb",
     "kontakt": "info@elekom-servis.hr",
-    "napomena": "Svi artikli se šalju u servis",
+    "napomena": "Napraviti nalog preko online prijave kvara",
     "documents": [],
-    "website": null
+    "website": "https://crm.elekom-servis.hr/prijava-kvara.html"
   },
   {
     "brand": "Babyliss",

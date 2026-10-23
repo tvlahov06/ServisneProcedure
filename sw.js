@@ -1,56 +1,71 @@
-// Service Worker za offline podršku
-const CACHE_NAME = 'servisne-procedure-v1';
+// Service Worker - Servisne Procedure
+const CACHE_NAME = 'servisne-procedure-v2';
+
+// Relativne putanje (rade na GitHub Pages u podmapi repozitorija)
 const urlsToCache = [
-  '/',
-  '/index.html',
-  '/manifest.json'
+  './',
+  './index.html',
+  './script.js',
+  './brandDatabase.json',
+  './manifest.json'
 ];
 
-// Instalacija Service Workera
+// Instalacija - precache osnovnih datoteka
 self.addEventListener('install', event => {
+  self.skipWaiting();
   event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(cache => {
-        console.log('Cache otvoren');
-        return cache.addAll(urlsToCache);
-      })
+    caches.open(CACHE_NAME).then(cache =>
+      // Svaku datoteku dodajemo zasebno da jedna koja fali ne sruši cijelu instalaciju
+      Promise.all(
+        urlsToCache.map(url =>
+          cache.add(url).catch(err => console.log('Precache preskočen:', url, err))
+        )
+      )
+    )
   );
 });
 
-// Aktivacija Service Workera
+// Aktivacija - brisanje starih cacheva i preuzimanje kontrole
 self.addEventListener('activate', event => {
   event.waitUntil(
-    caches.keys().then(cacheNames => {
-      return Promise.all(
-        cacheNames.map(cacheName => {
-          if (cacheName !== CACHE_NAME) {
-            console.log('Brišem stari cache:', cacheName);
-            return caches.delete(cacheName);
-          }
-        })
-      );
-    })
+    caches.keys()
+      .then(names =>
+        Promise.all(
+          names.filter(n => n !== CACHE_NAME).map(n => caches.delete(n))
+        )
+      )
+      .then(() => self.clients.claim())
   );
 });
 
-// Fetch strategija - Network first, pa cache fallback
+// Fetch - network first, cache fallback; samo GET s istog origina
 self.addEventListener('fetch', event => {
+  const request = event.request;
+
+  if (request.method !== 'GET') return;
+
+  const url = new URL(request.url);
+  if (url.origin !== self.location.origin) return;
+
   event.respondWith(
-    fetch(event.request)
+    fetch(request)
       .then(response => {
-        // Kloniraj response jer je stream i može se koristiti samo jednom
-        const responseToCache = response.clone();
-        
-        caches.open(CACHE_NAME)
-          .then(cache => {
-            cache.put(event.request, responseToCache);
-          });
-        
+        // Cacheiraj samo uspješne odgovore
+        if (response && response.ok) {
+          const copy = response.clone();
+          caches.open(CACHE_NAME).then(cache => cache.put(request, copy));
+        }
         return response;
       })
-      .catch(() => {
-        // Ako nema interneta, vrati iz cache-a
-        return caches.match(event.request);
-      })
+      .catch(() =>
+        caches.match(request).then(cached => {
+          if (cached) return cached;
+          // Navigacija bez interneta i bez cachea -> vrati početnu stranicu
+          if (request.mode === 'navigate') {
+            return caches.match('./index.html');
+          }
+          return new Response('Offline', { status: 503, statusText: 'Offline' });
+        })
+      )
   );
 });

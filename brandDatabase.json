@@ -134,13 +134,13 @@
         "service": "Andabaka servis",
         "address": "Kopilica 21, 21000 Split",
         "kontakt": "servis@andabaka.hr",
-        "napomena": "Svi artikli se šalju u servis"
+        "napomena": "Kontaktirati servis oko dogovora za servisnu intervenciju"
       },
       {
         "service": "Elmaks servis",
         "address": "Trnjanski nasip 23a, 10000 Zagreb",
         "kontakt": "servis@servis-elmaks.hr",
-        "napomena": "Svi uređaji se šalju u servis"
+        "napomena": "Kontaktirati servis oko dogovora za servisnu intervenciju"
       }
     ],
     "documents": [],
@@ -153,13 +153,13 @@
         "service": "Andabaka servis",
         "address": "Kopilica 21, 21000 Split",
         "kontakt": "servis@andabaka.hr",
-        "napomena": "Svi artikli se šalju u servis"
+        "napomena": "Kontaktirati servis oko dogovora za servisnu intervenciju"
       },
       {
         "service": "Elmaks servis",
         "address": "Trnjanski nasip 23a, 10000 Zagreb",
         "kontakt": "servis@servis-elmaks.hr",
-        "napomena": "Svi uređaji se šalju u servis"
+        "napomena": "Kontaktirati servis oko dogovora za servisnu intervenciju"
       }
     ],
     "documents": [],
@@ -172,13 +172,13 @@
         "service": "Miele Servis Split",
         "address": "Poljička cesta 26, 21000 Split",
         "kontakt": "info@miele.hr",
-        "napomena": "Svi uređaji se šalju u servis"
+        "napomena": "Kontaktirati servis oko dogovora za servisnu intervenciju"
       },
       {
         "service": "Miele Servis Zagreb",
         "address": "Buzinski prilaz 32, 10000 Zagreb",
         "kontakt": "info@miele.hr",
-        "napomena": "Svi uređaji se šalju u servis"
+        "napomena": "Kontaktirati servis oko dogovora za servisnu intervenciju"
       }
     ],
     "documents": [],
@@ -191,13 +191,13 @@
         "service": "Andabaka servis",
         "address": "Kopilica 21, 21000 Split",
         "kontakt": "servis@andabaka.hr",
-        "napomena": "Svi uređaji se šalju u servis"
+        "napomena": "Kontaktirati servis oko dogovora za servisnu intervenciju"
       },
       {
         "service": "Adepto usluge",
         "address": "Ivana Gundulića 12, 10431 Strmec Samoborski",
         "kontakt": "adepto.usluge@gmail.com",
-        "napomena": "Svi uređaji se šalju u servis"
+        "napomena": "Kontaktirati servis oko dogovora za servisnu intervenciju"
       }
     ],
     "documents": [],
@@ -210,13 +210,13 @@
         "service": "Andabaka servis",
         "address": "Kopilica 21, 21000 Split",
         "kontakt": "servis@andabaka.hr",
-        "napomena": "Svi uređaji se šalju u servis"
+        "napomena": "Kontaktirati servis oko dogovora za servisnu intervenciju"
       },
       {
         "service": "Adepto usluge",
         "address": "Ivana Gundulića 12, 10431 Strmec Samoborski",
         "kontakt": "adepto.usluge@gmail.com",
-        "napomena": "Svi uređaji se šalju u servis"
+        "napomena": "Kontaktirati servis oko dogovora za servisnu intervenciju"
       }
     ],
     "documents": [],
@@ -229,13 +229,13 @@
         "service": "Andabaka servis",
         "address": "Kopilica 21, 21000 Split",
         "kontakt": "servis@andabaka.hr",
-        "napomena": "Svi uređaji se šalju u servis"
+        "napomena": "Kontaktirati servis oko dogovora za servisnu intervenciju"
       },
       {
         "service": "Adepto usluge",
         "address": "Ivana Gundulića 12, 10431 Strmec Samoborski",
         "kontakt": "adepto.usluge@gmail.com",
-        "napomena": "Svi uređaji se šalju u servis"
+        "napomena": "Kontaktirati servis oko dogovora za servisnu intervenciju"
       }
     ],
     "documents": [],
@@ -248,13 +248,13 @@
         "service": "Andabaka servis",
         "address": "Kopilica 21, 21000 Split",
         "kontakt": "servis@andabaka.hr",
-        "napomena": "Svi uređaji se šalju u servis"
+        "napomena": "Kontaktirati servis oko dogovora za servisnu intervenciju"
       },
       {
         "service": "Liebherr",
         "address": "10000 Zagreb",
         "kontakt": "service.hr@liebherr.com",
-        "napomena": "Svi uređaji se šalju u servis"
+        "napomena": "Kontaktirati servis oko dogovora za servisnu intervenciju"
       }
     ],
     "documents": [],
@@ -267,17 +267,17 @@
         "service": "Andabaka servis",
         "address": "Kopilica 21, 21000 Split",
         "kontakt": "servis@andabaka.hr",
-        "napomena": "Svi uređaji se šalju u servis"
+        "napomena": "Kontaktirati servis oko dogovora za servisnu intervenciju"
       },
       {
-        "service": "GEMMA B&D centralni servis",
-        "address": "Prisavlje 2, 10000 Zagreb",
-        "kontakt": "servis@gemma.hr",
-        "napomena": "Svi uređaji se šalju u servis"
+        "service": "KONČAR – kućanski aparati d.d.",
+        "address": "Karlovačka ulica 23, 10451 Pisarovina",
+        "kontakt": "servis@koncar-ka.hr",
+        "napomena": "Kontaktirati servis oko dogovora za servisnu intervenciju"
       }
     ],
     "documents": [],
-    "website": "https://www.gemma.hr/prijava-kvara/"
+    "website": "https://webprijava.koncar-ka.hr/ords/f?p=104:1::::::"
   },
   {
     "brand": "Faber",
@@ -286,13 +286,13 @@
         "service": "Andabaka servis",
         "address": "Kopilica 21, 21000 Split",
         "kontakt": "servis@andabaka.hr",
-        "napomena": "Svi uređaji se šalju u servis"
+        "napomena": "Kontaktirati servis oko dogovora za servisnu intervenciju"
       },
       {
         "service": "GEMMA B&D centralni servis",
         "address": "Prisavlje 2, 10000 Zagreb",
         "kontakt": "servis@gemma.hr",
-        "napomena": "Svi uređaji se šalju u servis"
+        "napomena": "Kontaktirati servis oko dogovora za servisnu intervenciju"
       }
     ],
     "documents": [],
@@ -305,13 +305,13 @@
         "service": "Andabaka servis",
         "address": "Kopilica 21, 21000 Split",
         "kontakt": "servis@andabaka.hr",
-        "napomena": "Svi uređaji se šalju u servis"
+        "napomena": "Kontaktirati servis oko dogovora za servisnu intervenciju"
       },
       {
         "service": "Elmaks servis",
         "address": "Trnjanski nasip 23a, 10000 Zagreb",
         "kontakt": "servis@servis-elmaks.hr",
-        "napomena": "Svi uređaji se šalju u servis"
+        "napomena": "Kontaktirati servis oko dogovora za servisnu intervenciju"
       }
     ],
     "documents": [
@@ -375,7 +375,7 @@
     "service": "Supra Mea",
     "address": "Maksimirska 129, 10000 Zagreb",
     "kontakt": "info@supra-mea.hr",
-    "napomena": "Svi uređaji se šalju u servis",
+    "napomena": "Kontaktirati servis oko dogovora za servisnu intervenciju",
     "documents": [],
     "website": "https://www.lg.com/hr/podrska/jamstvo-popravak/zahtjev-za-popravak-prijava"
   },
